@@ -1,7 +1,7 @@
 import { LucideProps } from "lucide-react";
 
 export const Icons = {
-  external: (props: LucideProps) => (
+  External: (props: LucideProps) => (
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +22,7 @@ export const Icons = {
       </g>
     </svg>
   ),
-  github: (props: LucideProps) => (
+  Github: (props: LucideProps) => (
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,7 @@ export const Icons = {
       />
     </svg>
   ),
-  info: (props: LucideProps) => (
+  Info: (props: LucideProps) => (
     <svg
       {...props}
       version="1.1"
@@ -73,7 +73,7 @@ export const Icons = {
       />
     </svg>
   ),
-  microphone: (props: LucideProps) => (
+  Microphone: (props: LucideProps) => (
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@ export const Icons = {
       </g>
     </svg>
   ),
-  music: (props: LucideProps) => (
+  Music: (props: LucideProps) => (
     <svg
       {...props}
       version="1.1"
@@ -122,7 +122,7 @@ export const Icons = {
       </g>
     </svg>
   ),
-  spotify: (props: LucideProps) => (
+  Spotify: (props: LucideProps) => (
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
@@ -149,7 +149,7 @@ export const Icons = {
       />
     </svg>
   ),
-  time: (props: LucideProps) => (
+  Time: (props: LucideProps) => (
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +168,7 @@ export const Icons = {
       </g>
     </svg>
   ),
-  user: (props: LucideProps) => (
+  User: (props: LucideProps) => (
     <svg
       {...props}
       id="user-icon"
