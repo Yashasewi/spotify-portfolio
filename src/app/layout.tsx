@@ -1,4 +1,4 @@
-import Nav from "./components/Nav";
+import Nav from "../components/Nav";
 import "./globals.css";
 import { Rubik } from "next/font/google";
 
