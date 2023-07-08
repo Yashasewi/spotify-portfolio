@@ -17,8 +17,8 @@ body {
   background-color: var(--nav-background-rgb);
 }
 .icon {
-  @apply w-6 h-6 mx-auto text-white fill-current;
+  @apply w-[100%] h-6 mx-auto text-gray-400 fill-current hover:text-white;
 }
 .hoover {
-  @apply hover:bg-black hover:border-l-green-400 hover:border-l-4 min-w-[100%] py-2 transition-all duration-[50] ease-in;
+  @apply hover:bg-black hover:border-l-green-400 hover:border-l-4 min-w-[100%]  py-2 transition-all duration-[50] ease-in;
 }

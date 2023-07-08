@@ -4,7 +4,7 @@ import Link from "next/link";
 function Recent() {
   return (
     <div>
-      <div className="mx-8 mt-8">
+      <div className="mx-8 ">
         <div className="px-14 py-12">
           <header className="flex justify-between px-2  ">
             <h1 className="text-xl font-semibold">Recent</h1>

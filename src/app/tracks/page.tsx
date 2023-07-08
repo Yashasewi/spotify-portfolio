@@ -4,10 +4,10 @@ import Link from "next/link";
 function tracks() {
   return (
     <div>
-      <div className="mx-8 mt-8">
+      <div className="mx-8 ">
         <div className="px-14 py-12">
           <header className="flex justify-between px-2  ">
-            <h1 className="text-xl font-semibold">Top Artists</h1>
+            <h1 className="text-xl font-semibold">Top Tracks</h1>
             <div className="text-base flex gap-x-3 cursor-pointer">
               <span>All Time</span>
               <span>Last 6 Month</span>
