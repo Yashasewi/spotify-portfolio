@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={rubik.className}>
         <div className="flex">
           <Nav />
-          <div className="container p-12">{children}</div>
+          <div className="w-[100%] ">{children}</div>
         </div>
       </body>
     </html>
