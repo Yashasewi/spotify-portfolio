@@ -20,10 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={rubik.className}>
-        <div className="flex">
-          <Nav />
-          <div className="w-[100%] ">{children}</div>
-        </div>
+        <Nav />
+        <div className="w-[100%] pl-[6rem]">{children}</div>
       </body>
     </html>
   );
