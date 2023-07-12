@@ -1,3 +1,4 @@
+import SignOut_Button from "@/components/SignOut_Button";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -34,9 +35,7 @@ function page() {
             <p className="text-xs text-gray-400">Playlist</p>
           </div>
         </div>
-        <button className="px-8 py-2 mt-4 text-base border-2 border-white rounded-full hover:text-black hover:bg-white ">
-          Logout
-        </button>
+        <SignOut_Button />
       </header>
 
       <section className="flex w-full my-16 ">
@@ -178,7 +177,9 @@ function page() {
                     <span className="ml-2">Four(Deluxe)</span>
                   </p>
                 </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">2014 · 3:46</p>
+                <p className="text-sm text-gray-300 opacity-70 mr-3">
+                  2014 · 3:46
+                </p>
               </div>
             </Link>
             <Link href="/" className="flex items-center gap-x-7">
@@ -197,7 +198,9 @@ function page() {
                     <span className="ml-2">Four(Deluxe)</span>
                   </p>
                 </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">2014 · 3:46</p>
+                <p className="text-sm text-gray-300 opacity-70 mr-3">
+                  2014 · 3:46
+                </p>
               </div>
             </Link>
             <Link href="/" className="flex items-center gap-x-7">
@@ -216,7 +219,9 @@ function page() {
                     <span className="ml-2">Four(Deluxe)</span>
                   </p>
                 </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">2014 · 3:46</p>
+                <p className="text-sm text-gray-300 opacity-70 mr-3">
+                  2014 · 3:46
+                </p>
               </div>
             </Link>
             <Link href="/" className="flex items-center gap-x-7">
@@ -235,7 +240,9 @@ function page() {
                     <span className="ml-2">Four(Deluxe)</span>
                   </p>
                 </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">2014 · 3:46</p>
+                <p className="text-sm text-gray-300 opacity-70 mr-3">
+                  2014 · 3:46
+                </p>
               </div>
             </Link>
             <Link href="/" className="flex items-center gap-x-7">
@@ -254,7 +261,9 @@ function page() {
                     <span className="ml-2">Four(Deluxe)</span>
                   </p>
                 </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">2014 · 3:46</p>
+                <p className="text-sm text-gray-300 opacity-70 mr-3">
+                  2014 · 3:46
+                </p>
               </div>
             </Link>
             <Link href="/" className="flex items-center gap-x-7">
@@ -273,7 +282,9 @@ function page() {
                     <span className="ml-2">Four(Deluxe)</span>
                   </p>
                 </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">2014 · 3:46</p>
+                <p className="text-sm text-gray-300 opacity-70 mr-3">
+                  2014 · 3:46
+                </p>
               </div>
             </Link>
             <Link href="/" className="flex items-center gap-x-7">
@@ -292,7 +303,9 @@ function page() {
                     <span className="ml-2">Four(Deluxe)</span>
                   </p>
                 </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">2014 · 3:46</p>
+                <p className="text-sm text-gray-300 opacity-70 mr-3">
+                  2014 · 3:46
+                </p>
               </div>
             </Link>
             <Link href="/" className="flex items-center gap-x-7">
@@ -311,7 +324,9 @@ function page() {
                     <span className="ml-2">Four(Deluxe)</span>
                   </p>
                 </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">2014 · 3:46</p>
+                <p className="text-sm text-gray-300 opacity-70 mr-3">
+                  2014 · 3:46
+                </p>
               </div>
             </Link>
             <Link href="/" className="flex items-center gap-x-7">
@@ -330,7 +345,9 @@ function page() {
                     <span className="ml-2">Four(Deluxe)</span>
                   </p>
                 </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">2014 · 3:46</p>
+                <p className="text-sm text-gray-300 opacity-70 mr-3">
+                  2014 · 3:46
+                </p>
               </div>
             </Link>
             <Link href="/" className="flex items-center gap-x-7">
@@ -349,7 +366,9 @@ function page() {
                     <span className="ml-2">Four(Deluxe)</span>
                   </p>
                 </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">2014 · 3:46</p>
+                <p className="text-sm text-gray-300 opacity-70 mr-3">
+                  2014 · 3:46
+                </p>
               </div>
             </Link>
           </div>

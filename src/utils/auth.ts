@@ -17,7 +17,7 @@ export const authCOnfig: NextAuthOptions = {
 
 export async function loginIsRequiredServer() {
   const session = await getServerSession(authCOnfig);
-  if (!session) return redirect("/signin");
+  if (!session) return redirect("/");
 }
 // export function LoginIsRequiredClient() {
 //   if (typeof window === "undefined") {

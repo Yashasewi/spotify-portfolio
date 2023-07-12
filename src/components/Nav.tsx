@@ -7,7 +7,7 @@ function Nav() {
         <Icons.Spotify className="w-12 h-12 mx-auto fill-green-600 current text-" />
       </Link>
       <div className="flex flex-col gap-y-3 items-center justify-center py-5 w-[100%]">
-        <Link href={"/"} className="hoover">
+        <Link href={"/profile"} className="hoover">
           <span className="max-w-full ">
             <Icons.User className="icon" />
             Profile

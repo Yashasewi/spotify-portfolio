@@ -2,7 +2,6 @@ import Nav from "../components/Nav";
 import "./globals.css";
 import { Rubik } from "next/font/google";
 
-
 export const rubik = Rubik({
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -21,8 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={rubik.className}>
-        <Nav />
-        <div className="w-[100%] pl-[6rem]">{children}</div>
+        <div>{children}</div>
       </body>
     </html>
   );
