@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 export default async function Home() {
   const session = await getServerSession();
-  if (session) return redirect("/");
+  if (session) return redirect("/profile");
   return (
     <div className="">
       <div className="flex flex-col items-center justify-center h-screen gap-2">
