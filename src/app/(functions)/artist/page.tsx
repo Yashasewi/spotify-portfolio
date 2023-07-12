@@ -1,7 +1,10 @@
+import { loginIsRequiredServer } from "@/utils/auth";
 import Image from "next/image";
 import Link from "next/link";
 
-function artist() {
+async function artist() {
+  await loginIsRequiredServer();
+
   return (
     <div className="mx-8">
       <div className="px-16 py-12">

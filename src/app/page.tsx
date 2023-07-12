@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import SignOut_Button from "@/components/SignOut_Button";
+import { loginIsRequiredServer } from "@/utils/auth";
 
-export default function Home() {
+export default async function Home() {
+  await loginIsRequiredServer();
+
   return (
     <div className="min-w-full p-12">
       <header className="flex flex-col items-center py-6 gap-y-2">
