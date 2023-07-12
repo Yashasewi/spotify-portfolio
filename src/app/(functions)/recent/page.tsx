@@ -1,7 +1,10 @@
+import { loginIsRequiredServer } from "@/utils/auth";
 import Image from "next/image";
 import Link from "next/link";
 
-function Recent() {
+async function Recent() {
+  await loginIsRequiredServer();
+
   return (
     <div>
       <div className="mx-8 ">

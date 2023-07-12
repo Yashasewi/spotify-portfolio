@@ -2,6 +2,7 @@ import Nav from "../components/Nav";
 import "./globals.css";
 import { Rubik } from "next/font/google";
 
+
 export const rubik = Rubik({
   subsets: ["latin"],
   weight: ["400", "500"],
