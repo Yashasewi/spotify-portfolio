@@ -2,7 +2,7 @@ import SignOut_Button from "@/components/SignOut_Button";
 import Image from "next/image";
 import Link from "next/link";
 
-function page() {
+export default function Profile() {
   return (
     <div className="min-w-full p-12">
       <header className="flex flex-col items-center py-6 gap-y-2">
@@ -377,5 +377,3 @@ function page() {
     </div>
   );
 }
-
-export default page;
