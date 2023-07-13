@@ -1,7 +1,11 @@
+"use client";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 
-async function playlist() {
+function Playlist() {
+  const session = useSession();
+  console.log(session);
 
   return (
     <div>
@@ -357,4 +361,4 @@ async function playlist() {
   );
 }
 
-export default playlist;
+export default Playlist;
