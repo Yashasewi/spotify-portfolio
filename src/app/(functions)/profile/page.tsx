@@ -1,14 +1,19 @@
 import SignOut_Button from "@/components/SignOutButton";
+import { authCOnfig } from "@/utils/auth";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Profile() {
+export default async function Profile() {
+  const session = await getServerSession(authCOnfig);
+  const user = session!.user;
+  // console.log(user);
   return (
     <div className="min-w-full p-12">
       <header className="flex flex-col items-center py-6 gap-y-2">
         <Image
-          className="rounded-full "
-          src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
+          className="rounded-full"
+          src={user.image}
           alt="Profile Picture"
           width={160}
           height={160}
@@ -17,7 +22,7 @@ export default function Profile() {
           href={"https://open.spotify.com/user/31r4ez6fkilyf5loricph35fz6zi"}
         >
           <h1 className=" mt-2 font-semibold transition-colors text-5xl opacity-90 hover:text-green-500">
-            Yashasewi
+            {user.name}
           </h1>
         </Link>
 
