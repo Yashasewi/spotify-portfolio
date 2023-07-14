@@ -2,13 +2,11 @@ import { NextAuthOptions } from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 import { refreshAccessToken } from "@/utils/helper";
 
-
-
 export const authCOnfig: NextAuthOptions = {
   providers: [
     SpotifyProvider({
-      clientId: process.env.SPOTIFY_CLIENT_ID as string,
-      clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
+      clientId: process.env.SPOTIFY_CLIENT_ID!,
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET!,
       authorization: {
         url: "https://accounts.spotify.com/authorize",
         params: {
@@ -29,12 +27,13 @@ export const authCOnfig: NextAuthOptions = {
         token.accessToken = account.access_token;
         token.refreshToken = account.refresh_token;
         token.accessTokenExpires = account.expires_at;
+
         return token;
       }
       // access token has not expired
       if (
         token.accessTokenExpires &&
-        Date.now() < token.accessTokenExpires * 1000
+        Date.now() < (token.accessTokenExpires as number) * 1000
       ) {
         return token;
       }
@@ -42,9 +41,10 @@ export const authCOnfig: NextAuthOptions = {
       // access token has expired
       return await refreshAccessToken(token);
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       // Send properties to the client, like an access_token from a provider.
       session.accessToken = token.accessToken;
+
       return session;
     },
   },
