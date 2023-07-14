@@ -1,4 +1,4 @@
-import SignOut_Button from "@/components/SignOut_Button";
+import SignOut_Button from "@/components/SignOutButton";
 import Image from "next/image";
 import Link from "next/link";
 
