@@ -1,4 +1,4 @@
-import SignIn_Button from "@/components/SignIn_Button";
+import SignIn_Button from "@/components/SignInButton";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
