@@ -1,4 +1,4 @@
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, getServerSession } from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 import { refreshAccessToken } from "@/utils/helper";
 
@@ -49,3 +49,5 @@ export const authCOnfig: NextAuthOptions = {
     },
   },
 };
+
+export const getAuthSession = () => getServerSession(authCOnfig);
