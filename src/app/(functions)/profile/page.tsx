@@ -1,13 +1,39 @@
 import SignOut_Button from "@/components/SignOutButton";
-import { authCOnfig } from "@/utils/auth";
-import { getServerSession } from "next-auth";
+import { getAuthSession } from "@/utils/auth";
+import { getSpotifyProfile } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Profile() {
-  const session = await getServerSession(authCOnfig);
-  const user = session!.user;
   // console.log(user);
+  const session = await getAuthSession();
+  const user = session!.user;
+  // console.log(session);
+
+  const response2 = await fetch(
+    "https://api.spotify.com/v1/me/following?type=artist&limit=50",
+    {
+      headers: {
+        Authorization: `Bearer ${session!.accessToken}`,
+      },
+    }
+  );
+
+  const response3 = await fetch("https://api.spotify.com/v1/me/playlists", {
+    headers: {
+      Authorization: `Bearer ${session!.accessToken}`,
+    },
+  });
+
+  const data = await getSpotifyProfile(session?.accessToken);
+  // console.log(data);
+
+  const data2 = await response2.json();
+  // console.log(data2.artists.total);
+
+  const data3 = await response3.json();
+  // console.log(data3.total);
+
   return (
     <div className="min-w-full p-12">
       <header className="flex flex-col items-center py-6 gap-y-2">
@@ -18,9 +44,7 @@ export default async function Profile() {
           width={160}
           height={160}
         />
-        <Link
-          href={"https://open.spotify.com/user/31r4ez6fkilyf5loricph35fz6zi"}
-        >
+        <Link href={data.external_urls.spotify}>
           <h1 className=" mt-2 font-semibold transition-colors text-5xl opacity-90 hover:text-green-500">
             {user.name}
           </h1>
@@ -28,15 +52,21 @@ export default async function Profile() {
 
         <div className="flex justify-center mt-5 text-center gap-x-6 uppercase ">
           <div>
-            <span className="text-lg text-green-500 font-medium ">16</span>
+            <span className="text-lg text-green-500 font-medium ">
+              {data.followers.total}
+            </span>
             <p className="text-xs  text-gray-400">Followers</p>
           </div>
           <div>
-            <span className="text-lg text-green-500 font-medium ">17</span>
+            <span className="text-lg text-green-500 font-medium ">
+              {data2.artists.total}
+            </span>
             <p className="text-xs text-gray-400">Following</p>
           </div>
           <div>
-            <span className="text-lg text-green-500 font-medium ">122</span>
+            <span className="text-lg text-green-500 font-medium ">
+              {data3.total}
+            </span>
             <p className="text-xs text-gray-400">Playlist</p>
           </div>
         </div>
@@ -47,9 +77,11 @@ export default async function Profile() {
         <div className="min-w-[50%]  px-12">
           <div className="flex justify-between">
             <h2 className="text-xl font-semibold">Top Artist of All Time</h2>
-            <button className="px-5 py-2 ml-4 border-2 border-white rounded-full">
-              See More
-            </button>
+            <Link href="/artist">
+              <button className="px-5 py-2 ml-4 border-2 border-white rounded-full">
+                See More
+              </button>
+            </Link>
           </div>
           <div className="flex flex-col gap-y-5 mt-6">
             <Link href="/" className="flex items-center gap-x-7 font-medium ">
@@ -161,9 +193,11 @@ export default async function Profile() {
         <div className="min-w-[50%]  px-12">
           <div className="flex justify-between">
             <h2 className="text-xl font-semibold">Top Tracks of All Time</h2>
-            <button className="px-5 py-2 ml-4 border-2 border-white rounded-full">
-              See More
-            </button>
+            <Link href="/tracks">
+              <button className="px-5 py-2 ml-4 border-2 border-white rounded-full">
+                See More
+              </button>
+            </Link>
           </div>
           <div className="flex flex-col gap-y-5 mt-6">
             <Link href="/" className="flex items-center gap-x-7 font-medium">

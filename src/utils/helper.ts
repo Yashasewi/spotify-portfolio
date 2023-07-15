@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
+import exp from "constants";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -29,4 +30,13 @@ export async function refreshAccessToken(token: any) {
     refreshToken: data.refresh_token ?? token.refreshToken,
     accessTokenExpires: Date.now() + data.expires_in * 1000,
   };
+}
+
+export async function getSpotifyProfile(accessToken: string) {
+  const res = await fetch("https://api.spotify.com/v1/me", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  return await res.json();
 }
