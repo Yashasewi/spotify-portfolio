@@ -11,7 +11,6 @@ import Link from "next/link";
 
 export default async function Profile() {
   const session = await getAuthSession();
-  const user = session!.user;
 
   spotifyApi.setAccessToken(session!.accessToken);
 

@@ -1,7 +1,19 @@
+import { getAuthSession } from "@/utils/auth";
+import { spotifyApi } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 
 async function artist() {
+  const session = await getAuthSession();
+
+  spotifyApi.setAccessToken(session!.accessToken);
+
+  const topArtists = await spotifyApi.getMyTopArtists();
+
+  const topArtistsItems = topArtists.body.items;
+  console.log(topArtistsItems);
+
+  // TODO: Add a Time Range Selector for Top Artists (All Time, Last 6 Months, Last 4 Weeks)
 
   return (
     <div className="mx-8">
@@ -17,342 +29,32 @@ async function artist() {
 
         <section>
           <div className="grid grid-cols-5 gap-4 mt-12">
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
+            {topArtistsItems.map((artist) => (
+              <div
+                className="flex flex-col items-center justify-center text-center gap-3 p-2"
+                key={artist.id}
               >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174a00b11c129b27a88fc72f36b"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174a00b11c129b27a88fc72f36b"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174a00b11c129b27a88fc72f36b"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174a00b11c129b27a88fc72f36b"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174a00b11c129b27a88fc72f36b"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center gap-3 p-2">
-              <Link
-                className="inline-block w-[200px] h-[200px]"
-                href="/artist/3z97WMRi731dCvKklIf2X6"
-              >
-                <Image
-                  className="rounded-full  "
-                  src="https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca"
-                  alt="Profile Picture"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <Link
-                href="https://open.spotify.com/artist/3z97WMRi731dCvKklIf2X6"
-                target="_blank"
-                className=""
-              >
-                NEFFEX
-              </Link>
-            </div>
+                <Link
+                  className="inline-block w-[200px] h-[200px]"
+                  href={`/artists/${artist.id}`}
+                >
+                  <Image
+                    className="rounded-full  aspect-square"
+                    src={artist.images[0].url}
+                    alt="Profile Picture"
+                    width={200}
+                    height={200}
+                  />
+                </Link>
+                <Link
+                  href={artist.external_urls.spotify}
+                  target="_blank"
+                  className=""
+                >
+                  {artist.name}
+                </Link>
+              </div>
+            ))}
           </div>
         </section>
       </div>
