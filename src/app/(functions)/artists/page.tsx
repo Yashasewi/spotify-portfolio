@@ -3,15 +3,20 @@ import { spotifyApi } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 
+// * This is the code for the Top Artists Page
+
 async function artist() {
   const session = await getAuthSession();
 
   spotifyApi.setAccessToken(session!.accessToken);
 
-  const topArtists = await spotifyApi.getMyTopArtists();
+  const topArtists = await spotifyApi.getMyTopArtists({
+    limit: 50,
+    time_range: "long_term",
+  });
 
   const topArtistsItems = topArtists.body.items;
-  console.log(topArtistsItems);
+  // console.log(topArtistsItems);
 
   // TODO: Add a Time Range Selector for Top Artists (All Time, Last 6 Months, Last 4 Weeks)
 
