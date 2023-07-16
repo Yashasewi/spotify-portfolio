@@ -13,7 +13,7 @@ function Nav() {
             Profile
           </span>
         </Link>
-        <Link href={"/artist"} className="hoover">
+        <Link href={"/artists"} className="hoover">
           <span className="max-w-full">
             <Icons.Microphone className="icon" />
             Top Artist
