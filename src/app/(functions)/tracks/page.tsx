@@ -1,7 +1,28 @@
+import { getAuthSession } from "@/utils/auth";
+import {
+  artistToString,
+  millisecondsToMinutes,
+  spotifyApi,
+} from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 
+
+// * This is the code for the Top Tracks Page
+
 async function tracks() {
+  const session = await getAuthSession();
+
+  spotifyApi.setAccessToken(session!.accessToken);
+
+  const topTracks = await spotifyApi.getMyTopTracks({
+    limit: 50,
+    time_range: "long_term",
+  });
+  const topTracksItems = topTracks.body.items;
+  console.log(topTracksItems);
+
+  // TODO: Add a Time Range Selector for Top Artists (All Time, Last 6 Months, Last 4 Weeks)
 
   return (
     <div>
@@ -19,310 +40,35 @@ async function tracks() {
 
         <section>
           <div className="flex flex-col px-16 gap-y-8 my-4">
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
+            {topTracksItems.map((track: any) => (
+              <Link
+                href={`/tracks/` + track.id}
+                key={track.id}
+                className="flex items-center gap-x-7 font-medium"
+              >
+                <Image
+                  className=" "
+                  src={track.album.images[2].url}
+                  alt="Artist Image"
+                  width={60}
+                  height={60}
+                />
+                <div className="flex justify-between w-[100%]">
+                  <div>
+                    <h3 className="text-lg font-medium">{track.name}</h3>
+                    <p className="text-sm text-gray-300 opacity-70">
+                      <span className="mr-2">
+                        {artistToString(track.artists)}{" "}
+                      </span>
+                      {"·"} <span className="ml-2">{track.album.name}</span>
+                    </p>
+                  </div>
+                  <p className="text-sm mr-4 text-gray-300 opacity-70">
+                    {millisecondsToMinutes(track.duration_ms)}
                   </p>
                 </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={60}
-                height={60}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm mr-4 text-gray-300 opacity-70">3:46</p>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
         </section>
       </div>
