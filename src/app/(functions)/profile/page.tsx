@@ -69,16 +69,16 @@ export default async function Profile() {
         <div className="min-w-[50%]  px-12">
           <div className="flex justify-between">
             <h2 className="text-xl font-semibold">Top Artist of All Time</h2>
-            <Link href="/artist">
+            <Link href="/artists">
               <button className="px-5 py-2 ml-4 border-2 border-white rounded-full">
-                See More
+                See More 👀
               </button>
             </Link>
           </div>
           <div className="flex flex-col gap-y-5 mt-6">
             {topArtistsItems.slice(0, 8).map((artist: any) => (
               <Link
-                href={`/artist/${artist.id}`}
+                href={`/artists/${artist.id}`}
                 key={artist.id}
                 className="flex items-center gap-x-7 font-medium"
               >
@@ -139,7 +139,7 @@ export default async function Profile() {
             </Link> */}
             {topTracksItems.slice(0, 8).map((track: any) => (
               <Link
-                href={`/track/${track.id}`}
+                href={`/tracks/${track.id}`}
                 key={track.id}
                 className="flex items-center gap-x-7 font-medium"
               >
