@@ -5,6 +5,7 @@ import {
   dateToYear,
   millisecondsToMinutes,
   spotifyApi,
+  truncate,
 } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,7 +17,10 @@ export default async function Profile() {
 
   const meBody = await spotifyApi.getMe();
   const topArtists = await spotifyApi.getMyTopArtists();
-  const topTracks = await spotifyApi.getMyTopTracks();
+  const topTracks = await spotifyApi.getMyTopTracks({
+    limit: 10,
+    time_range: "short_term",
+  });
 
   const topArtistsItems = topArtists.body.items;
   const topTracksItems = topTracks.body.items;
@@ -101,41 +105,11 @@ export default async function Profile() {
             <h2 className="text-xl font-semibold">Top Tracks of All Time</h2>
             <Link href="/tracks">
               <button className="px-5 py-2 ml-4 border-2 border-white rounded-full">
-                See More
+                See More 👀
               </button>
             </Link>
           </div>
           <div className="flex flex-col gap-y-5 mt-6">
-            {/* <Link
-              href={`/track/${topTracksItems[0].id}`}
-              className="flex items-center gap-x-7 font-medium"
-            >
-              <Image
-                className="rounded-full  aspect-square"
-                src={topTracksItems[0].album.images[2].url}
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">
-                    {topTracksItems[0].name}
-                  </h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">
-                      {artistToString(topTracksItems[0].artists)}{" "}
-                    </span>
-                    {"·"}{" "}
-                    <span className="ml-2">{topTracksItems[0].album.name}</span>
-                  </p>
-                </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">
-                  {dateToYear(topTracksItems[0].album.release_date)} {"·"}{" "}
-                  {millisecondsToMinutes(topTracksItems[0].duration_ms)}
-                </p>
-              </div>
-            </Link> */}
             {topTracksItems.slice(0, 8).map((track: any) => (
               <Link
                 href={`/tracks/${track.id}`}
@@ -151,12 +125,17 @@ export default async function Profile() {
                 />
                 <div className="flex justify-between w-[100%]">
                   <div>
-                    <h3 className="text-lg font-medium">{track.name}</h3>
+                    <h3 className="text-lg font-medium">
+                      {truncate(track.name, 35)}
+                    </h3>
                     <p className="text-sm text-gray-300 opacity-70">
                       <span className="mr-2">
-                        {artistToString(track.artists)}{" "}
+                        {truncate(artistToString(track.artists))}{" "}
                       </span>
-                      {"·"} <span className="ml-2">{track.album.name}</span>
+                      {"·"}{" "}
+                      <span className="ml-2 ">
+                        {truncate(track.album.name)}
+                      </span>
                     </p>
                   </div>
                   <p className="text-sm text-gray-300 opacity-70 mr-3">
