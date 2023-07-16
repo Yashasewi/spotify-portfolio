@@ -60,3 +60,7 @@ export const dateToYear = (date: string) => {
 export const artistToString = (artists: any[]) => {
   return artists.map((artist) => artist.name).join(" , ");
 };
+
+export const truncate = (str: string, n: number = 30) => {
+  return str.length > n ? str.substr(0, n - 1) + "..." : str;
+};
