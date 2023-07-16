@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
-import exp from "constants";
+import SpotifyWebApi from "spotify-web-api-node";
 import { twMerge } from "tailwind-merge";
+import Link from "next/link";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -40,3 +41,22 @@ export async function getSpotifyProfile(accessToken: string) {
   });
   return await res.json();
 }
+
+export const spotifyApi = new SpotifyWebApi({
+  clientId: process.env.SPOTIFY_CLIENT_ID,
+  clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+});
+
+export const millisecondsToMinutes = (ms: number) => {
+  const minutes = Math.floor(ms / 60000);
+  const seconds = ((ms % 60000) / 1000).toFixed(0);
+  return `${minutes}:${+seconds < 10 ? "0" : ""}${seconds}`;
+};
+
+export const dateToYear = (date: string) => {
+  return new Date(date).getFullYear();
+};
+
+export const artistToString = (artists: any[]) => {
+  return artists.map((artist) => artist.name).join(" , ");
+};

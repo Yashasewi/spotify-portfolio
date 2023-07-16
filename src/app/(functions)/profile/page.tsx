@@ -1,79 +1,71 @@
 import SignOut_Button from "@/components/SignOutButton";
 import { getAuthSession } from "@/utils/auth";
-import { getSpotifyProfile } from "@/utils/helper";
+import {
+  artistToString,
+  dateToYear,
+  millisecondsToMinutes,
+  spotifyApi,
+} from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Profile() {
-  // console.log(user);
   const session = await getAuthSession();
   const user = session!.user;
-  // console.log(session);
 
-  const response2 = await fetch(
-    "https://api.spotify.com/v1/me/following?type=artist&limit=50",
-    {
-      headers: {
-        Authorization: `Bearer ${session!.accessToken}`,
-      },
-    }
-  );
+  spotifyApi.setAccessToken(session!.accessToken);
 
-  const response3 = await fetch("https://api.spotify.com/v1/me/playlists", {
-    headers: {
-      Authorization: `Bearer ${session!.accessToken}`,
-    },
-  });
+  const meBody = await spotifyApi.getMe();
+  const topArtists = await spotifyApi.getMyTopArtists();
+  const topTracks = await spotifyApi.getMyTopTracks();
 
-  const data = await getSpotifyProfile(session?.accessToken);
-  // console.log(data);
+  const topArtistsItems = topArtists.body.items;
+  const topTracksItems = topTracks.body.items;
+  const me = meBody.body;
 
-  const data2 = await response2.json();
-  // console.log(data2.artists.total);
-
-  const data3 = await response3.json();
-  // console.log(data3.total);
+  // console.log(me);
+  // console.log(topArtists.body);
+  // console.log(topTracks.body);
+  // console.log(topTracksItems[0]);
 
   return (
     <div className="min-w-full p-12">
       <header className="flex flex-col items-center py-6 gap-y-2">
         <Image
           className="rounded-full"
-          src={user.image}
+          src={me.images![1].url ? me.images![1].url : me.images![0].url}
           alt="Profile Picture"
           width={160}
           height={160}
         />
-        <Link href={data.external_urls.spotify}>
+        <Link href={"/"}>
           <h1 className=" mt-2 font-semibold transition-colors text-5xl opacity-90 hover:text-green-500">
-            {user.name}
+            {me.display_name}
           </h1>
         </Link>
 
         <div className="flex justify-center mt-5 text-center gap-x-6 uppercase ">
           <div>
             <span className="text-lg text-green-500 font-medium ">
-              {data.followers.total}
+              {me.followers!.total}
             </span>
             <p className="text-xs  text-gray-400">Followers</p>
           </div>
           <div>
-            <span className="text-lg text-green-500 font-medium ">
-              {data2.artists.total}
-            </span>
+            <span className="text-lg text-green-500 font-medium ">{9}</span>
             <p className="text-xs text-gray-400">Following</p>
           </div>
           <div>
-            <span className="text-lg text-green-500 font-medium ">
-              {data3.total}
-            </span>
+            <span className="text-lg text-green-500 font-medium ">{8}</span>
             <p className="text-xs text-gray-400">Playlist</p>
           </div>
         </div>
         <SignOut_Button />
       </header>
 
-      <section className="flex w-full my-16 ">
+      <section className="flex w-full my-16 mb-4 ">
+        {/* // * top artists of all time */}
+
         <div className="min-w-[50%]  px-12">
           <div className="flex justify-between">
             <h2 className="text-xl font-semibold">Top Artist of All Time</h2>
@@ -84,111 +76,26 @@ export default async function Profile() {
             </Link>
           </div>
           <div className="flex flex-col gap-y-5 mt-6">
-            <Link href="/" className="flex items-center gap-x-7 font-medium ">
-              <Image
-                className="rounded-full "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              NEFFEX
-            </Link>
-
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className="rounded-full "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              The Chainsmokers
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className="rounded-full "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              Eminem
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className="rounded-full "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              Pritam
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className="rounded-full "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              NEFFEX
-            </Link>
-
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className="rounded-full "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              The Chainsmokers
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className="rounded-full "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              Eminem
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className="rounded-full "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              Pritam
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className="rounded-full "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              NEFFEX
-            </Link>
-
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
-              <Image
-                className="rounded-full "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              The Chainsmokers
-            </Link>
+            {topArtistsItems.slice(0, 8).map((artist: any) => (
+              <Link
+                href={`/artist/${artist.id}`}
+                key={artist.id}
+                className="flex items-center gap-x-7 font-medium"
+              >
+                <Image
+                  className="rounded-full  aspect-square"
+                  src={artist.images[2].url}
+                  alt="Artist Image"
+                  width={50}
+                  height={50}
+                />
+                {artist.name}
+              </Link>
+            ))}
           </div>
         </div>
+
+        {/* // * top tracks of all time */}
 
         <div className="min-w-[50%]  px-12">
           <div className="flex justify-between">
@@ -200,216 +107,66 @@ export default async function Profile() {
             </Link>
           </div>
           <div className="flex flex-col gap-y-5 mt-6">
-            <Link href="/" className="flex items-center gap-x-7 font-medium">
+            {/* <Link
+              href={`/track/${topTracksItems[0].id}`}
+              className="flex items-center gap-x-7 font-medium"
+            >
               <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
+                className="rounded-full  aspect-square"
+                src={topTracksItems[0].album.images[2].url}
                 alt="Artist Image"
                 width={50}
                 height={50}
               />
               <div className="flex justify-between w-[100%]">
                 <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
+                  <h3 className="text-lg font-medium">
+                    {topTracksItems[0].name}
+                  </h3>
                   <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
+                    <span className="mr-2">
+                      {artistToString(topTracksItems[0].artists)}{" "}
+                    </span>
+                    {"·"}{" "}
+                    <span className="ml-2">{topTracksItems[0].album.name}</span>
                   </p>
                 </div>
                 <p className="text-sm text-gray-300 opacity-70 mr-3">
-                  2014 · 3:46
+                  {dateToYear(topTracksItems[0].album.release_date)} {"·"}{" "}
+                  {millisecondsToMinutes(topTracksItems[0].duration_ms)}
                 </p>
               </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              <div className="flex justify-between w-[100%] ">
-                <div>
-                  <h3 className="text-lg font-medium">Heat Waves</h3>
-                  <p className="text-sm text-gray-300 opacity-70 ">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
+            </Link> */}
+            {topTracksItems.slice(0, 8).map((track: any) => (
+              <Link
+                href={`/track/${track.id}`}
+                key={track.id}
+                className="flex items-center gap-x-7 font-medium"
+              >
+                <Image
+                  className="rounded-full  aspect-square"
+                  src={track.album.images[2].url}
+                  alt="Artist Image"
+                  width={50}
+                  height={50}
+                />
+                <div className="flex justify-between w-[100%]">
+                  <div>
+                    <h3 className="text-lg font-medium">{track.name}</h3>
+                    <p className="text-sm text-gray-300 opacity-70">
+                      <span className="mr-2">
+                        {artistToString(track.artists)}{" "}
+                      </span>
+                      {"·"} <span className="ml-2">{track.album.name}</span>
+                    </p>
+                  </div>
+                  <p className="text-sm text-gray-300 opacity-70 mr-3">
+                    {dateToYear(track.album.release_date)} {"·"}{" "}
+                    {millisecondsToMinutes(track.duration_ms)}
                   </p>
                 </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">
-                  2014 · 3:46
-                </p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">The Middle</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">
-                  2014 · 3:46
-                </p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Who Do YOu Love</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">
-                  2014 · 3:46
-                </p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Dusk Till Down</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">
-                  2014 · 3:46
-                </p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Night Changes</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">
-                  2014 · 3:46
-                </p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Heat Waves</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">
-                  2014 · 3:46
-                </p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">The Middle</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">
-                  2014 · 3:46
-                </p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Who Do YOu Love</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">
-                  2014 · 3:46
-                </p>
-              </div>
-            </Link>
-            <Link href="/" className="flex items-center gap-x-7">
-              <Image
-                className=" "
-                src="https://i.scdn.co/image/ab67757000003b82d008b7ccf168c1d105b9e6be"
-                alt="Artist Image"
-                width={50}
-                height={50}
-              />
-              <div className="flex justify-between w-[100%]">
-                <div>
-                  <h3 className="text-lg font-medium">Dusk Till Down</h3>
-                  <p className="text-sm text-gray-300 opacity-70">
-                    <span className="mr-2">One Direction</span> ·{" "}
-                    <span className="ml-2">Four(Deluxe)</span>
-                  </p>
-                </div>
-                <p className="text-sm text-gray-300 opacity-70 mr-3">
-                  2014 · 3:46
-                </p>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
