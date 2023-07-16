@@ -7,7 +7,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-
 // * This is the code for the Top Tracks Page
 
 async function tracks() {
@@ -20,7 +19,7 @@ async function tracks() {
     time_range: "long_term",
   });
   const topTracksItems = topTracks.body.items;
-  console.log(topTracksItems);
+  // console.log(topTracksItems);
 
   // TODO: Add a Time Range Selector for Top Artists (All Time, Last 6 Months, Last 4 Weeks)
 
