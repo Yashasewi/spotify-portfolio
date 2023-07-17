@@ -9,6 +9,7 @@ import {
 } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
+import { setInterval } from "timers/promises";
 
 export default async function Profile() {
   const session = await getAuthSession();
@@ -25,11 +26,6 @@ export default async function Profile() {
   const topArtistsItems = topArtists.body.items;
   const topTracksItems = topTracks.body.items;
   const me = meBody.body;
-
-  // console.log(me);
-  // console.log(topArtists.body);
-  // console.log(topTracks.body);
-  // console.log(topTracksItems[0]);
 
   return (
     <div className="min-w-full p-12">
@@ -70,7 +66,7 @@ export default async function Profile() {
         {/* // * top artists of all time */}
 
         <div className="min-w-[50%]  px-12">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <h2 className="text-xl font-semibold">Top Artist of All Time</h2>
             <Link href="/artists">
               <button className="px-5 py-2 ml-4 border-2 border-white rounded-full">
@@ -101,7 +97,7 @@ export default async function Profile() {
         {/* // * top tracks of all time */}
 
         <div className="min-w-[50%]  px-12">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <h2 className="text-xl font-semibold">Top Tracks of All Time</h2>
             <Link href="/tracks">
               <button className="px-5 py-2 ml-4 border-2 border-white rounded-full">
