@@ -41,14 +41,14 @@ async function Recent() {
   return (
     <div>
       <div className="mx-8 ">
-        <div className="px-14 py-12">
+        <div className="px-14 py-12 pb-8">
           <header className="flex justify-between px-2  ">
             <h1 className="text-xl font-semibold">Recent</h1>
           </header>
         </div>
 
         <section>
-          <div className="flex flex-col px-16 gap-y-8 my-4">
+          <div className="flex flex-col px-16 gap-y-8 my-4 mt-2">
             {recentItems.map((track: any) => (
               <Link
                 href={`/tracks/` + track.id}
