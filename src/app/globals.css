@@ -6,6 +6,8 @@
   --foreground-rgb: 255, 255, 255;
   --background-rgb: rgb(0, 0, 0);
   --nav-background-rgb: rgb(18, 18, 18);
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
 }
 
 body {
