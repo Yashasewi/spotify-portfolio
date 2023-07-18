@@ -12,7 +12,7 @@ export default function ArtistPage() {
         <header className="flex justify-between px-5 ">
           <h1 className="text-xl font-semibold">Top Artists</h1>
           <div className="text-base flex gap-x-3">
-            <span>All Time</span>
+            <span className="underline underline-offset-4">All Time</span>
             <span>Last 6 Month</span>
             <span>Last 4 Weeks</span>
           </div>
