@@ -1,23 +1,34 @@
+import { Artist } from "@/types/types";
+import { SpotifyApi } from "@/utils/SpotifyApi";
 import { getAuthSession } from "@/utils/auth";
-import { spotifyApi } from "@/utils/helper";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Key,
+  ReactElement,
+  JSXElementConstructor,
+  ReactNode,
+  ReactPortal,
+  PromiseLikeOfReactNode,
+} from "react";
+import { UrlObject } from "url";
 
 const Artist = async () => {
   const session = await getAuthSession();
 
-  spotifyApi.setAccessToken(session!.accessToken);
+  const spotifyApi = new SpotifyApi(session!.accessToken);
 
   const topArtists = await spotifyApi.getMyTopArtists({
     limit: 50,
     time_range: "long_term",
   });
 
-  const topArtistsItems = topArtists.body.items;
+  const topArtistsItems = topArtists.items;
   return (
     <section>
       <div className="grid grid-cols-5 gap-4 mt-12">
-        {topArtistsItems.map((artist) => (
+        {topArtistsItems.map((artist: Artist) => (
           <div
             className="flex flex-col items-center justify-center text-center gap-3 p-2"
             key={artist.id}

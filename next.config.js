@@ -25,6 +25,10 @@ module.exports = {
         protocol: "https",
         hostname: "**.spotifycdn.com",
       },
+      {
+        protocol: "https",
+        hostname: "wallpapercave.com",
+      },
     ],
   },
 

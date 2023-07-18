@@ -1,10 +1,6 @@
-import { Skeleton } from "@/components/Skeleton";
+import { SpotifyApi } from "@/utils/SpotifyApi";
 import { getAuthSession } from "@/utils/auth";
-import {
-  artistToString,
-  millisecondsToMinutes,
-  spotifyApi,
-} from "@/utils/helper";
+import { artistToString, millisecondsToMinutes } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,13 +9,13 @@ import Link from "next/link";
 async function tracks() {
   const session = await getAuthSession();
 
-  spotifyApi.setAccessToken(session!.accessToken);
+  const spotifyApi = new SpotifyApi(session!.accessToken);
 
   const topTracks = await spotifyApi.getMyTopTracks({
     limit: 50,
     time_range: "long_term",
   });
-  const topTracksItems = topTracks.body.items;
+  const topTracksItems = topTracks.items;
   // console.log(topTracksItems);
 
   // TODO: Add a Time Range Selector for Top Artists (All Time, Last 6 Months, Last 4 Weeks)

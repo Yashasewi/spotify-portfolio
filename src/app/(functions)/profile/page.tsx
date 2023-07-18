@@ -1,10 +1,10 @@
 import SignOut_Button from "@/components/SignOutButton";
+import { SpotifyApi } from "@/utils/SpotifyApi";
 import { getAuthSession } from "@/utils/auth";
 import {
   artistToString,
   dateToYear,
   millisecondsToMinutes,
-  spotifyApi,
   truncate,
 } from "@/utils/helper";
 import Image from "next/image";
@@ -13,18 +13,28 @@ import Link from "next/link";
 export default async function Profile() {
   const session = await getAuthSession();
 
-  spotifyApi.setAccessToken(session!.accessToken);
+  const api = new SpotifyApi(session!.accessToken);
 
-  const meBody = await spotifyApi.getMe();
-  const topArtists = await spotifyApi.getMyTopArtists();
-  const topTracks = await spotifyApi.getMyTopTracks({
+  const meBody = await api.getMe();
+  const topArtists = await api.getMyTopArtists({
     limit: 10,
-    time_range: "short_term",
+    time_range: "long_term",
   });
 
-  const topArtistsItems = topArtists.body.items;
-  const topTracksItems = topTracks.body.items;
-  const me = meBody.body;
+  // console.log(topArtists);
+
+  const topTracks = await api.getMyTopTracks({
+    limit: 10,
+    time_range: "long_term",
+  });
+
+  const topArtistsItems = topArtists.items;
+  console.log(topArtistsItems);
+  const topTracksItems = topTracks.items;
+  console.log(topTracksItems);
+  // console.log(meBody);
+
+  const me = meBody;
 
   return (
     <div className="min-w-full p-12">
@@ -112,7 +122,7 @@ export default async function Profile() {
                 className="flex items-center gap-x-7 font-medium"
               >
                 <Image
-                  className="rounded-full  aspect-square"
+                  className="  aspect-square"
                   src={track.album.images[2].url}
                   alt="Artist Image"
                   width={50}
