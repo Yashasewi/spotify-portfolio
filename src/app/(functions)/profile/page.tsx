@@ -15,24 +15,25 @@ export default async function Profile() {
 
   const api = new SpotifyApi(session!.accessToken);
 
-  const meBody = await api.getMe();
   const topArtists = await api.getMyTopArtists({
     limit: 10,
     time_range: "long_term",
   });
-
-  // console.log(topArtists);
 
   const topTracks = await api.getMyTopTracks({
     limit: 10,
     time_range: "long_term",
   });
 
+  const followedArtists = await api.getFollowedArtists();
+
+  const playlist = await api.getUserPlaylists({
+    limit: 1,
+  });
+
   const topArtistsItems = topArtists.items;
-  console.log(topArtistsItems);
   const topTracksItems = topTracks.items;
-  console.log(topTracksItems);
-  // console.log(meBody);
+  const meBody = await api.getMe();
 
   const me = meBody;
 
@@ -60,11 +61,15 @@ export default async function Profile() {
             <p className="text-xs  text-gray-400">Followers</p>
           </div>
           <div>
-            <span className="text-lg text-green-500 font-medium ">{9}</span>
+            <span className="text-lg text-green-500 font-medium ">
+              {followedArtists.artists.total}
+            </span>
             <p className="text-xs text-gray-400">Following</p>
           </div>
           <div>
-            <span className="text-lg text-green-500 font-medium ">{8}</span>
+            <span className="text-lg text-green-500 font-medium ">
+              {playlist.total}
+            </span>
             <p className="text-xs text-gray-400">Playlist</p>
           </div>
         </div>

@@ -77,4 +77,30 @@ export class SpotifyApi {
 
     return res;
   }
+
+  public async getPlaylistTracks(props = { limit: 20, playlist_id: "" }) {
+    const res = await fetch(
+      `https://api.spotify.com/v1/playlists/${props.playlist_id}/tracks?limit=${props.limit}`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.accessToken}`,
+        },
+      }
+    ).then((res) => res.json());
+
+    return res;
+  }
+
+  public async getFollowedArtists(props = { limit: 1 }) {
+    const res = await fetch(
+      `https://api.spotify.com/v1/me/following?type=artist&limit=${props.limit}`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.accessToken}`,
+        },
+      }
+    ).then((res) => res.json());
+
+    return res;
+  }
 }
