@@ -9,7 +9,6 @@ import {
 } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
-import { setInterval } from "timers/promises";
 
 export default async function Profile() {
   const session = await getAuthSession();
