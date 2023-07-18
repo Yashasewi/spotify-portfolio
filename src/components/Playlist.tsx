@@ -1,17 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getAuthSession } from "@/utils/auth";
-import { spotifyApi } from "@/utils/helper";
-
+import { SpotifyApi } from "@/utils/SpotifyApi";
 async function Playlist() {
   const session = await getAuthSession();
 
+  const spotifyApi = new SpotifyApi(session!.accessToken);
   spotifyApi.setAccessToken(session!.accessToken);
 
   const playlist = await spotifyApi.getUserPlaylists({
     limit: 50,
   });
-  const playlistItems = playlist.body.items;
+  console.log(playlist.items[0]);
+  const playlistItems = playlist.items;
 
   return (
     <section>
@@ -27,7 +28,10 @@ async function Playlist() {
             >
               <Image
                 className="  "
-                src={item.images[0].url}
+                src={
+                  item.images[0]?.url ||
+                  "https://wallpapercave.com/wp/wp9403167.jpg"
+                }
                 alt="Profile Picture"
                 width={230}
                 height={230}
