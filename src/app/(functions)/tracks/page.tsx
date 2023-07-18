@@ -27,7 +27,7 @@ async function tracks() {
           <header className="flex justify-between px-2  ">
             <h1 className="text-xl font-semibold">Top Tracks</h1>
             <div className="text-base flex gap-x-3 cursor-pointer">
-              <span>All Time</span>
+              <span className="underline underline-offset-4">All Time</span>
               <span>Last 6 Month</span>
               <span>Last 4 Weeks</span>
             </div>
