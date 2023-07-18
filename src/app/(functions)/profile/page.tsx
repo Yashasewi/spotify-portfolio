@@ -1,31 +1,41 @@
 import SignOut_Button from "@/components/SignOutButton";
+import { SpotifyApi } from "@/utils/SpotifyApi";
 import { getAuthSession } from "@/utils/auth";
 import {
   artistToString,
   dateToYear,
   millisecondsToMinutes,
-  spotifyApi,
   truncate,
 } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
-import { setInterval } from "timers/promises";
 
 export default async function Profile() {
   const session = await getAuthSession();
 
-  spotifyApi.setAccessToken(session!.accessToken);
+  const api = new SpotifyApi(session!.accessToken);
 
-  const meBody = await spotifyApi.getMe();
-  const topArtists = await spotifyApi.getMyTopArtists();
-  const topTracks = await spotifyApi.getMyTopTracks({
+  const topArtists = await api.getMyTopArtists({
     limit: 10,
-    time_range: "short_term",
+    time_range: "long_term",
   });
 
-  const topArtistsItems = topArtists.body.items;
-  const topTracksItems = topTracks.body.items;
-  const me = meBody.body;
+  const topTracks = await api.getMyTopTracks({
+    limit: 10,
+    time_range: "long_term",
+  });
+
+  const followedArtists = await api.getFollowedArtists();
+
+  const playlist = await api.getUserPlaylists({
+    limit: 1,
+  });
+
+  const topArtistsItems = topArtists.items;
+  const topTracksItems = topTracks.items;
+  const meBody = await api.getMe();
+
+  const me = meBody;
 
   return (
     <div className="min-w-full p-12">
@@ -51,11 +61,15 @@ export default async function Profile() {
             <p className="text-xs  text-gray-400">Followers</p>
           </div>
           <div>
-            <span className="text-lg text-green-500 font-medium ">{9}</span>
+            <span className="text-lg text-green-500 font-medium ">
+              {followedArtists.artists.total}
+            </span>
             <p className="text-xs text-gray-400">Following</p>
           </div>
           <div>
-            <span className="text-lg text-green-500 font-medium ">{8}</span>
+            <span className="text-lg text-green-500 font-medium ">
+              {playlist.total}
+            </span>
             <p className="text-xs text-gray-400">Playlist</p>
           </div>
         </div>
@@ -113,7 +127,7 @@ export default async function Profile() {
                 className="flex items-center gap-x-7 font-medium"
               >
                 <Image
-                  className="rounded-full  aspect-square"
+                  className="  aspect-square"
                   src={track.album.images[2].url}
                   alt="Artist Image"
                   width={50}
