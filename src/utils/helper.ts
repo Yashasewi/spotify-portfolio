@@ -22,12 +22,16 @@ export async function refreshAccessToken(token: any) {
     },
     body: params,
   });
+
+  //  1689760004851
+  //  1689763425 + 3600 = 1689767025
   const data = await response.json();
+  console.log("response from refresh token", data);
   return {
     ...token,
     accessToken: data.access_token,
     refreshToken: data.refresh_token ?? token.refreshToken,
-    accessTokenExpires: Date.now() + data.expires_in * 1000,
+    accessTokenExpires: Date.now() / 1000 + (data.expires_in as number),
   };
 }
 
@@ -57,5 +61,3 @@ export const artistToString = (artists: any[]) => {
 export const truncate = (str: string, n: number = 30) => {
   return str.length > n ? str.substr(0, n - 1) + "..." : str;
 };
-
-
