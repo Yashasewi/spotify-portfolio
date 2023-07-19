@@ -20,6 +20,7 @@ export const authConfig: NextAuthOptions = {
   pages: {
     signIn: "/",
   },
+
   callbacks: {
     async jwt({ token, account }) {
       // Persist the OAuth access_token to the token right after signin
@@ -44,6 +45,9 @@ export const authConfig: NextAuthOptions = {
     async session({ session, token }) {
       // Send properties to the client, like an access_token from a provider.
       session.accessToken = token.accessToken;
+      session.refreshToken = token.refreshToken;
+      session.accessTokenExpires = token.accessTokenExpires as number;
+      // console.log(typeof token.accessTokenExpires);
 
       return session;
     },

@@ -37,12 +37,22 @@ export default async function Profile() {
 
   const me = meBody;
 
+  // console.log(me);
+
+  if (me.error?.status === 401) {
+    return (
+      <div>
+        <h1>{me.error.message} </h1>
+        <SignOut_Button />
+      </div>
+    );
+  }
   return (
     <div className="min-w-full p-12">
       <header className="flex flex-col items-center py-6 gap-y-2">
         <Image
           className="rounded-full"
-          src={me.images![1].url ? me.images![1].url : me.images![0].url}
+          src={me.images[1].url ? me.images![1].url : me.images![0].url}
           alt="Profile Picture"
           width={160}
           height={160}

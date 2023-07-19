@@ -1,10 +1,25 @@
 import SignIn_Button from "@/components/SignInButton";
-import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { getAuthSession } from "@/utils/auth";
+import { refreshAccessToken } from "@/utils/helper";
 
 export default async function Home() {
-  const session = await getServerSession();
+  var session = await getAuthSession();
+
+  console.log("before refreshing token");
+  console.log(session);
+
+  if (
+    session?.accessTokenExpires &&
+    session?.accessTokenExpires < Date.now() / 1000
+  ) {
+    session = await refreshAccessToken(session);
+  }
+
+  console.log("after refreshing token");
+  console.log(session);
   if (session) return redirect("/profile");
+
   return (
     <div className="">
       <div className="flex flex-col items-center justify-center h-screen gap-2">
