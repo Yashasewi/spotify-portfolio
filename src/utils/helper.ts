@@ -30,7 +30,6 @@ export async function refreshAccessToken(token: any) {
   return {
     ...token,
     accessToken: data.access_token,
-    refreshToken: data.refresh_token ?? token.refreshToken,
     accessTokenExpires: Date.now() / 1000 + (data.expires_in as number),
   };
 }

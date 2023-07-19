@@ -4,20 +4,18 @@ import { getAuthSession } from "@/utils/auth";
 import { refreshAccessToken } from "@/utils/helper";
 
 export default async function Home() {
-  var session = await getAuthSession();
+  let session = await getAuthSession();
 
-  console.log("before refreshing token");
-  console.log(session);
+  // console.log("before refreshing token");
+  // console.log(session);
 
-  if (
-    session?.accessTokenExpires &&
-    session?.accessTokenExpires < Date.now() / 1000
-  ) {
-    session = await refreshAccessToken(session);
-  }
+  // // if (session!.accessTokenExpires < Date.now() / 1000) {
+  // //   console.log(" is running this code or not refreshing token");
+  // // }
+  // session = await refreshAccessToken(session);
 
-  console.log("after refreshing token");
-  console.log(session);
+  // console.log("after refreshing token");
+  // console.log(session);
   if (session) return redirect("/profile");
 
   return (
