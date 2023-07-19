@@ -24,22 +24,23 @@ export const authConfig: NextAuthOptions = {
   callbacks: {
     async jwt({ token, account }) {
       // Persist the OAuth access_token to the token right after signin
-      if (account) {
-        token.accessToken = account.access_token;
-        token.refreshToken = account.refresh_token;
-        token.accessTokenExpires = account.expires_at;
+      // if (account) {
+      //   token.accessToken = account.access_token;
+      //   token.refreshToken = account.refresh_token;
+      //   token.accessTokenExpires = account.expires_at;
 
-        return token;
-      }
-      // access token has not expired
-      if (
-        token.accessTokenExpires &&
-        Date.now() < (token.accessTokenExpires as number) * 1000
-      ) {
-        return token;
-      }
+      //   return token;
+      // }
+      // // access token has not expired
+      // if (
+      //   token.accessTokenExpires &&
+      //   Date.now() < (token.accessTokenExpires as number)
+      // ) {
+      //   return token;
+      // }
 
       // access token has expired
+      console.log("token in callback", token);
       return await refreshAccessToken(token);
     },
     async session({ session, token }) {
@@ -49,6 +50,7 @@ export const authConfig: NextAuthOptions = {
       session.accessTokenExpires = token.accessTokenExpires as number;
       // console.log(typeof token.accessTokenExpires);
 
+      console.log("session in callback", session);
       return session;
     },
   },
