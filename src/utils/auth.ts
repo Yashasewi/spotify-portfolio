@@ -24,13 +24,13 @@ export const authConfig: NextAuthOptions = {
   callbacks: {
     async jwt({ token, account }) {
       // Persist the OAuth access_token to the token right after signin
-      // if (account) {
-      //   token.accessToken = account.access_token;
-      //   token.refreshToken = account.refresh_token;
-      //   token.accessTokenExpires = account.expires_at;
+      if (account) {
+        token.accessToken = account.access_token;
+        token.refreshToken = account.refresh_token;
+        token.accessTokenExpires = account.expires_at;
 
-      //   return token;
-      // }
+        return token;
+      }
       // // access token has not expired
       // if (
       //   token.accessTokenExpires &&
