@@ -11,7 +11,7 @@ async function Playlist() {
   const playlist = await spotifyApi.getUserPlaylists({
     limit: 50,
   });
-  console.log(playlist.items[0]);
+  // console.log(playlist.items[0]);
   const playlistItems = playlist.items;
 
   return (

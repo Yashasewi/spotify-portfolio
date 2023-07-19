@@ -52,7 +52,12 @@ export default async function Profile() {
       <header className="flex flex-col items-center py-6 gap-y-2">
         <Image
           className="rounded-full"
-          src={me.images[1].url ? me.images![1].url : me.images![0].url}
+          src={
+            me.images[1].url
+              ? me.images![1].url
+              : me.images![0].url ||
+                "https://wallpapercave.com/wp/wp9403167.jpg"
+          }
           alt="Profile Picture"
           width={160}
           height={160}
@@ -66,19 +71,19 @@ export default async function Profile() {
         <div className="flex justify-center mt-5 text-center gap-x-6 uppercase ">
           <div>
             <span className="text-lg text-green-500 font-medium ">
-              {me.followers!.total}
+              {me.followers!.total || 0}
             </span>
             <p className="text-xs  text-gray-400">Followers</p>
           </div>
           <div>
             <span className="text-lg text-green-500 font-medium ">
-              {followedArtists.artists.total}
+              {followedArtists.artists.total || 0}
             </span>
             <p className="text-xs text-gray-400">Following</p>
           </div>
           <div>
             <span className="text-lg text-green-500 font-medium ">
-              {playlist.total}
+              {playlist.total || 0}
             </span>
             <p className="text-xs text-gray-400">Playlist</p>
           </div>
