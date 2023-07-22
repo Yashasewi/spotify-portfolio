@@ -3,56 +3,24 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-rgb: rgb(0, 0, 0);
-  --nav-background-rgb: rgb(18, 18, 18);
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
+    --foreground-rgb: 255, 255, 255;
+    --background-rgb: rgb(0, 0, 0);
+    --nav-background-rgb: rgb(18, 18, 18);
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background-color: var(--background-rgb);
+    color: rgb(var(--foreground-rgb));
+    background-color: var(--background-rgb);
 }
 
 .nav {
-  background-color: var(--nav-background-rgb);
+    background-color: var(--nav-background-rgb);
 }
 .icon {
-  @apply w-[100%] h-6 mx-auto text-gray-400 fill-current hover:text-white;
+    @apply w-[100%] h-6 mx-auto text-gray-400 fill-current hover:text-white;
 }
 .hoover {
-  @apply hover:bg-black hover:border-l-green-400 hover:border-l-4 min-w-[100%]  py-2 transition-all duration-[50] ease-in;
-}
-
-.lds-hourglass {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.lds-hourglass:after {
-  content: " ";
-  display: block;
-  border-radius: 50%;
-  width: 0;
-  height: 0;
-  margin: 8px;
-  box-sizing: border-box;
-  border: 32px solid rgb(29, 183, 85);
-  border-color: rgb(29, 183, 85) transparent rgb(29, 183, 85) transparent;
-  animation: lds-hourglass 1.2s infinite;
-}
-@keyframes lds-hourglass {
-  0% {
-    transform: rotate(0);
-    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
-  50% {
-    transform: rotate(900deg);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-  100% {
-    transform: rotate(1800deg);
-  }
+    @apply hover:bg-black hover:border-l-green-400 hover:border-l-4 min-w-[100%]  py-2 transition-all duration-[50] ease-in;
 }
