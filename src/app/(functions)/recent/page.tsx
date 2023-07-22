@@ -6,24 +6,27 @@ import {
     getLastPlayedTime,
     millisecondsToMinutes,
 } from "@/utils/helper";
+import { cache } from "react";
 
-async function Recent() {
-    const session = await getAuthSession();
-
+export const getRecent = cache(async (accessToken: string) => {
     const response = await fetch(
         `https://api.spotify.com/v1/me/player/recently-played?limit=50`,
         {
             headers: {
-                Authorization: `Bearer ${session!.accessToken}`,
+                Authorization: `Bearer ${accessToken}`,
             },
         }
     );
-
     const data = await response.json();
-    const recentItems = data.items;
 
-    // console.log(recentItems[0]);
-    // console.log(recentItems[0].track.id);
+    return data;
+});
+
+async function Recent() {
+    const session = await getAuthSession();
+
+    const data = await getRecent(session!.accessToken);
+    const recentItems = data.items;
 
     return (
         <div>

@@ -95,10 +95,6 @@ export const calculateScore = (audioFeatures: AudioFeaturesData) => {
     const relaxedScore = (energy * 100 + tempo) / 200;
     const positiveScore = (valence + energy + speechiness + acousticness) / 4;
     const darkScore = (valence * 100 + energy * 100) / 200;
-    let instrumentalnessScore: number = 0;
-    instrumentalness === 0 && danceability > 0.2
-        ? (instrumentalnessScore = 0.26)
-        : null;
     // Normalize the scores to a range of 0 to 1
     const normalizedRelaxed = relaxedScore;
     const normalizedPositive = positiveScore;
@@ -106,7 +102,6 @@ export const calculateScore = (audioFeatures: AudioFeaturesData) => {
 
     return {
         ...audioFeatures,
-        instrumentalness: instrumentalnessScore,
         relaxed: normalizedRelaxed,
         positive: normalizedPositive,
         dark: normalizedDark,
