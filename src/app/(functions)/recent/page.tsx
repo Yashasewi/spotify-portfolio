@@ -8,7 +8,7 @@ import {
 } from "@/utils/helper";
 import { cache } from "react";
 
-export const getRecent = cache(async (accessToken: string) => {
+const getRecent = cache(async (accessToken: string) => {
     const response = await fetch(
         `https://api.spotify.com/v1/me/player/recently-played?limit=50`,
         {
