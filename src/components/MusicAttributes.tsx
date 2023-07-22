@@ -19,7 +19,7 @@ const MusicAttributeItem: React.FC<MusicAttributeItemProps> = ({
             <div className={`h-2 rounded-full overflow-hidden`}>
                 <div className="bg-zinc-900 h-full rounded-full">
                     <div
-                        className={`h-full bg-${color}-500  `}
+                        className={`h-full bg-green-500  `}
                         style={{ width: `${percent}%` }}
                     ></div>
                 </div>
