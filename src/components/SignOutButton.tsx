@@ -20,7 +20,7 @@ export default function SignOut_Button() {
   return (
     <button
       onClick={() => handleSignOut()}
-      className="px-8 py-2 mt-4 text-base border-2 border-white rounded-full hover:text-black hover:bg-white "
+      className="px-8 py-2 mt-4 text-base  bg-green-600 rounded-full hover:text-black hover:bg-white "
     >
       {isSignedIn ? (
         <Loader2 className="text-green-400  animate-spin" />
