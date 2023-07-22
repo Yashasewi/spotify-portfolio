@@ -29,7 +29,6 @@ export default async function Profile() {
         limit: 1,
     });
 
-
     const [topArtistsData, topTracksData, me, followedArtists, playlist] =
         await Promise.all([
             topArtists,
@@ -45,6 +44,48 @@ export default async function Profile() {
         return (
             <div>
                 <h1>{me.error.message} </h1>
+                <SignOut_Button />
+            </div>
+        );
+    }
+    if (me.error?.status === 403 || me.error?.status === 429) {
+        return (
+            <div className="text-center">
+                <h1 className="text-3xl font-semibold">{me.error.message}</h1>
+                <p className="text-lg font-medium">
+                    If you see this error again and it means you can not login
+                    because of restrictions from spotify . Its is happening
+                    because of this app is in development mode and still
+                    restricted by spotify to be used by only email registered in
+                    spotify developer dashboard
+                </p>
+                <span className="text-lg font-medium text-green-500">
+                    {" "}
+                    if you want to use this app please contact me on <br />
+                    please contact me on{" "}
+                    <a href="https://twitter.com/Yashasewi">Twitter</a>{" "}
+                </span>
+                <SignOut_Button />
+            </div>
+        );
+    }
+    if (me.error?.status) {
+        return (
+            <div className="text-center">
+                <h1 className="text-3xl font-semibold">{me.error.message}</h1>
+                <p className="text-lg font-medium">
+                    If you see this error again and it means you can not login
+                    because of restrictions from spotify . Its is happening
+                    because of this app is in development mode and still
+                    restricted by spotify to be used by only email registered in
+                    spotify developer dashboard
+                </p>
+                <span className="text-lg font-medium text-green-500">
+                    {" "}
+                    if you want to use this app please contact me on <br />
+                    please contact me on{" "}
+                    <a href="https://twitter.com/Yashasewi">Twitter</a>{" "}
+                </span>
                 <SignOut_Button />
             </div>
         );
