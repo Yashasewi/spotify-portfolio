@@ -40,7 +40,7 @@ export const authConfig: NextAuthOptions = {
       // }
 
       // access token has expired
-      console.log("token in callback", token);
+      // console.log("token in callback", token);
       return await refreshAccessToken(token);
     },
     async session({ session, token }) {
@@ -50,7 +50,7 @@ export const authConfig: NextAuthOptions = {
       session.accessTokenExpires = token.accessTokenExpires as number;
       // console.log(typeof token.accessTokenExpires);
 
-      console.log("session in callback", session);
+      // console.log("session in callback", session);
       return session;
     },
   },
