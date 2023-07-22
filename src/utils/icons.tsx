@@ -207,16 +207,36 @@ export const attributes: Attribute[] = [
         description: "Music that feels fast, loud, and noisy.",
     },
     {
-        name: "relaxed",
-        title: "Relaxed",
-        color: "blue",
-        description: "Music that is slow and calm.",
+        name: "acousticness",
+        title: "Acoustic",
+        color: "orange",
+        description: "Music with no electric instruments.",
     },
+    {
+        name: "instrumentalness",
+        title: "Instrumental",
+        color: "pink",
+        description: "Music that contains no vocals.",
+    },
+
     {
         name: "danceability",
         title: "Danceable",
         color: "yellow",
         description: "Music that makes you want to move it.",
+    },
+    {
+        name: "liveness",
+        title: "Live",
+        color: "indigo",
+        description: "Music that is performed live.",
+    },
+
+    {
+        name: "speechiness",
+        title: "Spoken",
+        color: "teal",
+        description: "Music that contains mostly spoken words.",
     },
     {
         name: "positive",
@@ -230,29 +250,12 @@ export const attributes: Attribute[] = [
         color: "red",
         description: "Music that is sad, depressing, or angry.",
     },
+
     {
-        name: "liveness",
-        title: "Live",
-        color: "indigo",
-        description: "Music that is performed live.",
-    },
-    {
-        name: "acousticness",
-        title: "Acoustic",
-        color: "orange",
-        description: "Music with no electric instruments.",
-    },
-    {
-        name: "instrumentalness",
-        title: "Instrumental",
-        color: "pink",
-        description: "Music that contains no vocals.",
-    },
-    {
-        name: "speechiness",
-        title: "Spoken",
-        color: "teal",
-        description: "Music that contains mostly spoken words.",
+        name: "relaxed",
+        title: "Relaxed",
+        color: "blue",
+        description: "Music that is slow and calm.",
     },
     // Add other attributes in the same format
 ];

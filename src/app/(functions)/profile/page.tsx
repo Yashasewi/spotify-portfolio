@@ -15,29 +15,31 @@ export default async function Profile() {
 
     const api = new SpotifyApi(session!.accessToken);
 
-    const topArtists = await api.getMyTopArtists({
+    const topArtists = api.getMyTopArtists({
         limit: 10,
         time_range: "long_term",
     });
 
-    const topTracks = await api.getMyTopTracks({
+    const topTracks = api.getMyTopTracks({
         limit: 10,
         time_range: "long_term",
     });
-
-    const followedArtists = await api.getFollowedArtists();
-
-    const playlist = await api.getUserPlaylists({
+    const followedArtistsRes = api.getFollowedArtists();
+    const playlistData = api.getUserPlaylists({
         limit: 1,
     });
 
-    const topArtistsItems = topArtists.items;
-    const topTracksItems = topTracks.items;
-    const meBody = await api.getMe();
 
-    const me = meBody;
-
-    // console.log(me);
+    const [topArtistsData, topTracksData, me, followedArtists, playlist] =
+        await Promise.all([
+            topArtists,
+            topTracks,
+            api.getMe(),
+            followedArtistsRes,
+            playlistData,
+        ]);
+    const topArtistsItems = topArtistsData.items;
+    const topTracksItems = topTracksData.items;
 
     if (me.error?.status === 401) {
         return (
