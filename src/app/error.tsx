@@ -26,8 +26,8 @@ export default function Error({
                         .replace(/\.?$/, ".")}
                 </h6>
                 <div className="text-base font-medium">
-                    If you see this error again and it means you can not login
-                    because of restrictions from spotify .{" "}
+                    If you see this error again and cant understand it means you
+                    can not login because of restrictions from spotify .{" "}
                 </div>
                 <div className="text-base font-medium">
                     Its is happening because of this app is in development mode

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { SpotifyApi } from "@/utils/SpotifyApi";
 import { getAuthSession } from "@/utils/auth";
 import { millisecondsToMinutes } from "@/utils/helper";
-import { AudioFeaturesData } from "@/types/types";
 
 export default async function TrackPage({
     params,
