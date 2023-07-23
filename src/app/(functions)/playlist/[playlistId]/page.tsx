@@ -35,7 +35,7 @@ export default async function Page({ params }: pageProps) {
         );
     }
 
-    console.log(playlistData);
+    // console.log(playlistData.tracks.items);
 
     return (
         <div className="flex min-w-full items-center justify-center  text-center  p-12 gap-x-10   ">
@@ -56,7 +56,7 @@ export default async function Page({ params }: pageProps) {
                         href={playlistData.external_urls.spotify}
                         className="transition-colors hover:text-green-500"
                     >
-                        <h1 className=" mt-2 font-semibold transition-colors text-5xl opacity-90 hover:text-green-500">
+                        <h1 className=" mt-2 font-semibold transition-colors text-3xl opacity-90 hover:text-green-500">
                             {playlistData.name}
                         </h1>
                     </a>
@@ -91,7 +91,7 @@ export default async function Page({ params }: pageProps) {
                 <div className="flex flex-col gap-y-5 mt-6 ">
                     {playlistData.tracks.items.map((track: any) => (
                         <Link
-                            href={`/tracks/${track.id}`}
+                            href={`/tracks/${track?.track?.id}`}
                             key={track.id}
                             className="flex items-center gap-x-7 font-medium hover:text-green-500"
                         >
