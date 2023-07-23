@@ -38,7 +38,7 @@ const Artist = async () => {
             <div className="grid grid-cols-5 gap-4 mt-12">
                 {topArtistsItems.map((artist: Artist) => (
                     <div
-                        className="flex flex-col items-center justify-center text-center gap-3 p-2"
+                        className="flex flex-col items-center justify-center text-center gap-3 p-2 hover:text-green-500"
                         key={artist.id}
                     >
                         <Link
@@ -54,7 +54,7 @@ const Artist = async () => {
                             />
                         </Link>
                         <Link
-                            href={artist.external_urls.spotify}
+                            href={`/artists/${artist.id}`}
                             target="_blank"
                             className=""
                         >

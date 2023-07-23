@@ -143,7 +143,11 @@ export default async function Profile() {
                             Top Artist of All Time
                         </h2>
                         <Link href="/artists">
-                            <button className="px-5 py-2 ml-4 border-2 border-white rounded-full">
+                            <button
+                                className="px-5 py-2 ml-4 border-2 border-white rounded-full
+                            hover:border-green-500 hover:text-green-500
+                            "
+                            >
                                 See More 👀
                             </button>
                         </Link>
@@ -153,7 +157,8 @@ export default async function Profile() {
                             <Link
                                 href={`/artists/${artist.id}`}
                                 key={artist.id}
-                                className="flex items-center gap-x-7 font-medium"
+                                className="flex items-center gap-x-7 font-medium
+                                 hover:text-green-500"
                             >
                                 <Image
                                     className="rounded-full  aspect-square"
@@ -176,7 +181,7 @@ export default async function Profile() {
                             Top Tracks of All Time
                         </h2>
                         <Link href="/tracks">
-                            <button className="px-5 py-2 ml-4 border-2 border-white rounded-full">
+                            <button className="px-5 py-2 ml-4 border-2 border-white rounded-full hover:border-green-500 hover:text-green-500">
                                 See More 👀
                             </button>
                         </Link>
@@ -186,7 +191,7 @@ export default async function Profile() {
                             <Link
                                 href={`/tracks/${track.id}`}
                                 key={track.id}
-                                className="flex items-center gap-x-7 font-medium"
+                                className="flex items-center gap-x-7 font-medium hover:text-green-500"
                             >
                                 <Image
                                     className="  aspect-square"
