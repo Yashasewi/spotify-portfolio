@@ -80,9 +80,9 @@ export class SpotifyApi {
         return res;
     }
 
-    public async getPlaylistTracks(props = { limit: 20, playlist_id: "" }) {
+    public async getPlaylistTracks(playlist_id: string) {
         const res = await fetch(
-            `https://api.spotify.com/v1/playlists/${props.playlist_id}/tracks?limit=${props.limit}`,
+            `https://api.spotify.com/v1/playlists/${playlist_id}`,
             {
                 headers: {
                     Authorization: `Bearer ${this.accessToken}`,

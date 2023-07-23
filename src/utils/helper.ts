@@ -44,7 +44,7 @@ export async function getSpotifyProfile(accessToken: string) {
     return await res.json();
 }
 
-export const millisecondsToMinutes = (ms: number) => {
+export const millisecondsToMinutes = (ms: number = 0) => {
     const minutes = Math.floor(ms / 60000);
     const seconds = ((ms % 60000) / 1000).toFixed(0);
     return `${minutes}:${+seconds < 10 ? "0" : ""}${seconds}`;
@@ -54,11 +54,11 @@ export const dateToYear = (date: string) => {
     return new Date(date).getFullYear();
 };
 
-export const artistToString = (artists: any[]) => {
+export const artistToString = (artists: any[] = [{ name: "unknown" }]) => {
     return artists.map((artist) => artist.name).join(" , ");
 };
 
-export const truncate = (str: string, n: number = 30) => {
+export const truncate = (str: string = "unknown", n: number = 30) => {
     return str.length > n ? str.substr(0, n - 1) + "..." : str;
 };
 
