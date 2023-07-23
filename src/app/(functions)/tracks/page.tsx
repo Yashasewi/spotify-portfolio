@@ -19,7 +19,25 @@ async function tracks() {
     const topTracksItems = topTracksItemsData.items;
     // console.log(topTracksItems);
 
-    // TODO: Add a Time Range Selector for Top Artists (All Time, Last 6 Months, Last 4 Weeks)
+    // TODO: Add a Time Range Selector for Top Tracks (All Time, Last 6 Months, Last 4 Weeks)
+    if (topTracksItems.length == 0)
+        return (
+            <div className="flex flex-col items-center justify-center  text-center  p-12">
+                <p>
+                    You dont have any top artists yet. Please listen to some
+                    music.
+                </p>
+                <p>
+                    <a
+                        href="https://open.spotify.com/"
+                        target="_blank"
+                        className="underline cursor-pointer text-green-500"
+                    >
+                        Open Player
+                    </a>
+                </p>
+            </div>
+        );
 
     return (
         <div>
@@ -27,7 +45,7 @@ async function tracks() {
                 <div className="px-14 py-12">
                     <header className="flex justify-between px-2  ">
                         <h1 className="text-xl font-semibold">Top Tracks</h1>
-                        <div className="text-base flex gap-x-3 cursor-pointer">
+                        <div className="text-base  gap-x-3 cursor-pointer hidden">
                             <span className="underline underline-offset-4">
                                 All Time
                             </span>
