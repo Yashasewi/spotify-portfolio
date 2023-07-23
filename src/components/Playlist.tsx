@@ -17,8 +17,7 @@ async function Playlist() {
     return (
         <section>
             <div
-                className="grid grid-cols-5 gap-4 mt-12
-        sm:grid-cols-2 sm:gap-2 sm:mt-4 
+                className="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5
             "
             >
                 {playlistItems.map((item: any) => (
