@@ -96,9 +96,9 @@ export default async function Profile() {
                 <Image
                     className="rounded-full"
                     src={
-                        me.images[1].url
-                            ? me.images![1].url
-                            : me.images![0].url ||
+                        me.images[1]?.url
+                            ? me.images![1]?.url
+                            : me.images![0]?.url ||
                               "https://wallpapercave.com/wp/wp9403167.jpg"
                     }
                     alt="Profile Picture"
