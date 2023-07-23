@@ -2,7 +2,6 @@ import { NextAuthOptions, getServerSession } from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 import { refreshAccessToken } from "@/utils/helper";
 
-
 export const authConfig: NextAuthOptions = {
     providers: [
         SpotifyProvider({
@@ -11,7 +10,7 @@ export const authConfig: NextAuthOptions = {
             authorization: {
                 url: "https://accounts.spotify.com/authorize",
                 params: {
-                    scope: "user-read-email user-read-private user-read-playback-state user-read-recently-played user-top-read user-library-read playlist-read-private streaming app-remote-control user-follow-read user-follow-modify playlist-read-private playlist-read-collaborative playlist-modify-public user-read-private",
+                    scope: "user-read-email user-read-private  user-read-recently-played user-top-read user-library-read playlist-read-private  user-follow-read playlist-read-private playlist-read-collaborative  ",
                 },
             },
         }),
