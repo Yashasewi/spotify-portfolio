@@ -129,4 +129,50 @@ export class SpotifyApi {
 
         return calculateScore(res);
     }
+
+    public async getArtist(artist_id: string) {
+        const res = await fetch(
+            `https://api.spotify.com/v1/artists/${artist_id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${this.accessToken}`,
+                },
+            }
+        ).then((res) => res.json());
+        return res;
+    }
+    public async getArtistTopTracks(artist_id: string) {
+        const res = await fetch(
+            `https://api.spotify.com/v1/artists/${artist_id}/top-tracks?market=US`,
+            {
+                headers: {
+                    Authorization: `Bearer ${this.accessToken}`,
+                },
+            }
+        ).then((res) => res.json());
+        return res;
+    }
+    public async getArtistRelatedArtists(artist_id: string) {
+        const res = await fetch(
+            `https://api.spotify.com/v1/artists/${artist_id}/related-artists`,
+            {
+                headers: {
+                    Authorization: `Bearer ${this.accessToken}`,
+                },
+            }
+        ).then((res) => res.json());
+        return res;
+    }
+
+    public async getArtistAlbums(artist_id: string) {
+        const res = await fetch(
+            `https://api.spotify.com/v1/artists/${artist_id}/albums?include_groups=album%2Csingle%2Cappears_on`,
+            {
+                headers: {
+                    Authorization: `Bearer ${this.accessToken}`,
+                },
+            }
+        ).then((res) => res.json());
+        return res;
+    }
 }

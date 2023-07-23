@@ -43,7 +43,7 @@ async function Recent() {
                             <Link
                                 href={`/tracks/` + track.track.id}
                                 key={track.id}
-                                className="flex items-center gap-x-7 font-medium"
+                                className="flex items-center gap-x-7 font-medium hover:text-green-500"
                             >
                                 <Image
                                     className=" "

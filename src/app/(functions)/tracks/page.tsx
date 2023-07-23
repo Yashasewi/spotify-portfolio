@@ -61,7 +61,7 @@ async function tracks() {
                             <Link
                                 href={`/tracks/` + track.id}
                                 key={track.id}
-                                className="flex items-center gap-x-7 font-medium"
+                                className="flex items-center gap-x-7 font-medium hover:text-green-500"
                             >
                                 <Image
                                     className=" "
