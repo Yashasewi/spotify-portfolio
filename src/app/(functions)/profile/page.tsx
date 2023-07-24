@@ -210,7 +210,7 @@ export default async function Profile() {
                                         <h3 className="text-base md:text-lg font-medium">
                                             {truncate(track.name, 30)}
                                         </h3>
-                                        <p className="inline sm:hidden md:inline  md:text-sm text-gray-300 opacity-70 mr-3">
+                                        <p className="inline sm:hidden md:inline  mdtext-sm text-gray-300 opacity-70 mr-3">
                                             {dateToYear(
                                                 track.album.release_date
                                             )}{" "}
