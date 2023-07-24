@@ -22,9 +22,9 @@ body {
     @apply w-[100%] h-6 mx-auto text-gray-400 fill-current hover:text-white;
 }
 .hoover {
-    @apply hover:bg-black hover:border-b-green-400 hover:border-b-4 md:hover:border-l-green-400 md:hover:border-l-4 min-h-[3.9rem] w-full md:min-w-[2rem]  py-2 transition-all duration-[50] ease-in;
+    @apply hover:bg-black hover:border-b-green-400 hover:border-b-4 md:hover:border-b-0 md:hover:border-b-black md:hover:border-l-green-400 md:hover:border-l-4 min-h-[3.9rem] w-full md:min-w-[2rem]  py-2 transition-all duration-[50] ease-in;
 }
 
 .hoover > span {
-    @apply text-xs md:text-base;
+    @apply text-xs md:text-xs;
 }
