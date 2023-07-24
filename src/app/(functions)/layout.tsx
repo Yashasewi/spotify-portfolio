@@ -11,7 +11,7 @@ export default function DashboardLayout({
     <SessionProvider>
       <div>
         <Nav />
-        <div className="w-[100%] pl-[6rem]">{children}</div>
+        <div className="w-[100%] md:pl-[6rem]">{children}</div>
       </div>
     </SessionProvider>
   );
