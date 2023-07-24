@@ -91,7 +91,7 @@ export default async function Profile() {
         );
     }
     return (
-        <div className="min-w-full p-4 sm:p-12">
+        <div className="min-w-full p-4 sm:p-1 md:p-12">
             <header className="flex flex-col items-center py-4 sm:py-6 gap-y-2">
                 <Image
                     className="rounded-full"
@@ -144,12 +144,12 @@ export default async function Profile() {
                 {/* top artists of all time */}
                 <div className="min-w-full sm:min-w-[50%] px-2 sm:px-12">
                     <div className="flex justify-between items-center">
-                        <h2 className="text-lg sm:text-xl font-semibold">
+                        <h2 className="text-lg sm:text-sm md:text-xl font-semibold">
                             Top Artist of All Time
                         </h2>
                         <Link href="/artists">
-                            <button className="px-3 sm:px-5 py-2 ml-2 sm:ml-4 border-2 border-white rounded-full hover:border-green-500 hover:text-green-500">
-                                See More 👀
+                            <button className=" text:sm sm:text-xs md:text-sm  px-3 md:px-5 py-2 ml-2 md:ml-4 border-2 border-white rounded-full hover:border-green-500 hover:text-green-500">
+                                See More
                             </button>
                         </Link>
                     </div>
@@ -167,7 +167,7 @@ export default async function Profile() {
                                     width={40}
                                     height={40}
                                 />
-                                <span className="text-sm sm:text-base">
+                                <span className="text-base md:text-lg">
                                     {artist.name}
                                 </span>
                             </Link>
@@ -178,28 +178,28 @@ export default async function Profile() {
                 {/* top tracks of all time */}
                 <div className="min-w-full sm:min-w-[50%] px-2 sm:px-12 mt-6 sm:mt-0">
                     <div className="flex justify-between items-center">
-                        <h2 className="text-lg sm:text-xl font-semibold">
+                        <h2 className="text-lg sm:text-sm md:text-xl font-semibold">
                             Top Tracks of All Time
                         </h2>
                         <Link href="/tracks">
-                            <button className="px-3 sm:px-5 py-2 ml-2 sm:ml-4 border-2 border-white rounded-full hover:border-green-500 hover:text-green-500">
-                                See More 👀
+                            <button className="text:sm sm:text-xs md:text-sm px-3 md:px-5 py-2 ml-2 md:ml-4 border-2 border-white rounded-full hover:border-green-500 hover:text-green-500">
+                                See More
                             </button>
                         </Link>
                     </div>
                     <div className="flex flex-col gap-y-5 mt-6">
-                        {topTracksItems.slice(0, 8).map((track: any) => (
+                        {topTracksItems.slice(0, 7).map((track: any) => (
                             <Link
                                 href={`/tracks/${track.id}`}
                                 key={track.id}
-                                className="flex  items-center gap-x-3 sm:gap-x-7 font-medium hover:text-green-500"
+                                className="flex items-center gap-x-3 sm:gap-x-7 font-medium hover:text-green-500"
                             >
                                 <Image
                                     className="aspect-square"
                                     src={
-                                        track.album.images[2].url ||
-                                        track.album.images[1].url ||
-                                        track.album.images[0].url
+                                        track.album.images[2]?.url ||
+                                        track.album.images[1]?.url ||
+                                        track.album.images[0]?.url
                                     }
                                     alt="Artist Image"
                                     width={50}
@@ -207,29 +207,33 @@ export default async function Profile() {
                                 />
                                 <div className="flex flex-col justify-between w-[100%]">
                                     <div className="flex justify-between">
-                                        <h3 className="text-base sm:text-lg font-medium">
+                                        <h3 className="text-base md:text-lg font-medium">
                                             {truncate(track.name, 30)}
                                         </h3>
-                                        <p className="text-xs sm:text-sm text-gray-300 opacity-70 mr-3">
+                                        <p className="inline sm:hidden md:inline  md:text-sm text-gray-300 opacity-70 mr-3">
                                             {dateToYear(
                                                 track.album.release_date
                                             )}{" "}
-                                            {"·"}{" "}
-                                            {millisecondsToMinutes(
-                                                track.duration_ms
-                                            )}
+                                            ·{" "}
+                                            {track.duration_ms > 0
+                                                ? millisecondsToMinutes(
+                                                      track.duration_ms
+                                                  )
+                                                : ""}
                                         </p>
                                     </div>
-                                    <p className="text-sm sm:text-base text-gray-300 opacity-70">
+                                    <p className="text-sm md:text-base text-gray-300 opacity-70">
                                         <span className="mr-1 sm:mr-2">
                                             {truncate(
                                                 artistToString(track.artists),
                                                 25
                                             )}
                                         </span>
-                                        {"·"}
-                                        <span className="ml-1 sm:ml-2">
-                                            {truncate(track.album.name, 25)}
+                                        <span className="inline sm:hidden md:inline text-xs md:text-sm">
+                                            {track.album.name
+                                                ? "· " +
+                                                  truncate(track.album.name, 25)
+                                                : ""}
                                         </span>
                                     </p>
                                 </div>
