@@ -29,8 +29,8 @@ export default async function TrackPage({
                 <Image
                     className="rounded-full"
                     src={
-                        track.album?.images[0].url ||
-                        " https://i.scdn.co/image/ab67616d0000b273712701c5e263efc8726b1464"
+                        track.album?.images[0]?.url ||
+                        "https://wallpapercave.com/wp/wp9403167.jpg"
                     }
                     alt="Profile Picture"
                     width={160}
@@ -38,7 +38,7 @@ export default async function TrackPage({
                 />
                 <a href={track.external_urls?.spotify || "/"}>
                     <h1 className=" mt-2 font-medium transition-colors text-2xl opacity-90 hover:text-green-500">
-                        {track.name || "Track Name"}
+                        {track.name || "Unavailable"}
                     </h1>
                 </a>
 

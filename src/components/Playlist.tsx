@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getAuthSession } from "@/utils/auth";
 import { SpotifyApi } from "@/utils/SpotifyApi";
+import { truncate } from "@/utils/helper";
 async function Playlist() {
     const session = await getAuthSession();
 
@@ -30,7 +31,7 @@ async function Playlist() {
                             href={`/playlist/${item.id}`}
                         >
                             <Image
-                                className="  "
+                                className="aspect-square"
                                 src={
                                     item.images[0]?.url ||
                                     "https://wallpapercave.com/wp/wp9403167.jpg"
@@ -46,7 +47,7 @@ async function Playlist() {
                                 target="_blank"
                                 className="text-sm w-[230px] h-[40px] overflow-hidden overflow-ellipsis whitespace-nowrap"
                             >
-                                {item.name}
+                                {truncate(item.name, 30)}
                             </Link>
                             <p className="text-xs text-gray-500 w-[230px] h-[40px] overflow-hidden overflow-ellipsis whitespace-nowrap">
                                 {item.tracks.total}{" "}
