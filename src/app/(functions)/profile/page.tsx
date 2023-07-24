@@ -91,7 +91,7 @@ export default async function Profile() {
         );
     }
     return (
-        <div className="min-w-full p-4 sm:p-1 md:p-12">
+        <div className="min-w-full p-4 sm:p-1 md:p-12 pb-16">
             <header className="flex flex-col items-center py-4 sm:py-6 gap-y-2">
                 <Image
                     className="rounded-full"

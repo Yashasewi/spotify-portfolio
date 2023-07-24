@@ -35,18 +35,15 @@ const Artist = async () => {
         );
     return (
         <section>
-            <div className="grid grid-cols-5 gap-4 mt-12">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-12">
                 {topArtistsItems.map((artist: Artist) => (
                     <div
                         className="flex flex-col items-center justify-center text-center gap-3 p-2 hover:text-green-500"
                         key={artist.id}
                     >
-                        <Link
-                            className="inline-block w-[200px] h-[200px]"
-                            href={`/artists/${artist.id}`}
-                        >
+                        <Link href={`/artists/${artist.id}`}>
                             <Image
-                                className="rounded-full  aspect-square"
+                                className="w-[140px] h-[140px] sm:w-[180px] sm:h-[180px]   lg:w-[200px] lg:h-[200px] md:w-[200px] md:h-[200px] rounded-full object-cover"
                                 src={artist.images[0].url}
                                 alt="Profile Picture"
                                 width={200}
