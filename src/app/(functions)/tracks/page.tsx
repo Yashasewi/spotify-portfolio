@@ -65,7 +65,11 @@ async function tracks() {
                             >
                                 <Image
                                     className=" "
-                                    src={track.album.images[2].url}
+                                    src={
+                                        track.album?.images[2]?.url ||
+                                        track.album.images[1]?.url ||
+                                        track.album.images[0]?.url
+                                    }
                                     alt="Artist Image"
                                     width={60}
                                     height={60}

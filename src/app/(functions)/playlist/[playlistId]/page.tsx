@@ -42,7 +42,7 @@ export default async function Page({ params }: pageProps) {
             <div className=" h-full  w-[35%]  flex justify-center items-center overflow-hidden ">
                 <header className="flex flex-col items-center py-6 gap-y-2 fixed top-[20%]">
                     <Image
-                        className="rounded-full"
+                        className="rounded-full aspect-square"
                         src={
                             playlistData.images[0].url ||
                             "https://wallpapercave.com/wp/wp9403167.jpg"
@@ -57,11 +57,11 @@ export default async function Page({ params }: pageProps) {
                         className="transition-colors hover:text-green-500"
                     >
                         <h1 className=" mt-2 font-semibold transition-colors text-3xl opacity-90 hover:text-green-500">
-                            {playlistData.name}
+                            {truncate(playlistData.name, 30)}
                         </h1>
                     </a>
-                    <p className="text-sm text-gray-300 opacity-70">
-                        {truncate(playlistData.description, 45)}
+                    <p className="text-sm text-gray-300 opacity-70 max-w-[75%]">
+                        {truncate(playlistData.description, 90)}
                     </p>
                     <div className="flex justify-center mt-5 text-center gap-x-6 uppercase ">
                         <div>
