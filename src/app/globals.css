@@ -28,3 +28,7 @@ body {
 .hoover > span {
     @apply text-xs md:text-xs;
 }
+
+.active{
+    @apply bg-black border-b-green-400 border-b-4 md:border-b-0 md:border-b-black md:border-l-green-400 md:border-l-4;
+}
