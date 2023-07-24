@@ -38,9 +38,9 @@ function Nav() {
                     </span>
                 </Link>
             </div>
-            <Link href={"https://www.github.com/yashasewi"}>
+            <a target="_blank" href={"https://www.github.com/yashasewi"}>
                 <Icons.Github className="icon" />
-            </Link>
+            </a>
         </div>
     );
 }
