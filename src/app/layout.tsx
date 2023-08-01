@@ -9,8 +9,7 @@ export const metadata = {
     title: "Spotify Stats",
     description:
         "A web app for visualizing personalized Spotify data built with React, Express, and the Spotify API ",
-  url: "https://spotify.yashasewi.eu.org",
-  image: "https://spotify.yashasewi.eu.org/spotify-stats.png",
+    url: "https://spotify.yashasewi.eu.org",
 };
 
 export default function RootLayout({
